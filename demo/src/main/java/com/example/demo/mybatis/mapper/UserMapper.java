@@ -1,9 +1,9 @@
 package com.example.demo.mybatis.mapper;
 
+import com.example.demo.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
-import com.example.demo.mybatis.pojo.User;
 
 @Component
 @Mapper

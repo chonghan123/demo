@@ -5,7 +5,7 @@ server:
 
 mybatis-plus:
   mapper-locations: classpath*:mybatis-mapper/*.xml
-  type-aliases-package: com.example.demo.mybatis.pojo
+  type-aliases-package: com.example.demo.pojo
 
 spring:
   datasource:
@@ -20,7 +20,10 @@ spring:
       pool:
         max-idle: 20
         max-total: 50
-
+  data:
+    mongodb:
+      host: 101.201.235.107
+      port: 27017
 
 
 

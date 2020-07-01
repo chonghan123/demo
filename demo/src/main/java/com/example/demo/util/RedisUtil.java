@@ -1,6 +1,4 @@
-package com.example.demo.redis;
-
-import java.util.Objects;
+package com.example.demo.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -8,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 /**
  * @author hc
