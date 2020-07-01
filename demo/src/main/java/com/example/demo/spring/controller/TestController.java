@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.mybatis.pojo.User;
+import com.example.demo.redis.RedisUtil;
 import com.example.demo.service.UserService;
 
 /**
@@ -21,10 +22,22 @@ public class TestController {
     @Autowired
     public UserService userService;
 
+    @Autowired
+    RedisUtil redisUtil;
+
     @RequestMapping("/query")
     @ResponseBody
     public User query(String name) {
-    User user = userService.queryUser(name);
-    return user;
+        User user = userService.queryUser(name);
+        return user;
+    }
+
+    @RequestMapping("/test")
+    @ResponseBody
+    public String test() {
+
+        redisUtil.set("name", "doudou");
+        String string = redisUtil.get("name");
+        return string;
     }
 }
