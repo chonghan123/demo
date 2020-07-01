@@ -1,7 +1,12 @@
 package com.example.demo.spring.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.demo.mybatis.pojo.User;
+import com.example.demo.service.UserService;
 
 /**
  * @author hc
@@ -12,10 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/test")
 public class TestController {
-    @RequestMapping("/test")
-    public void test(String name) {
 
-        int i = 10;
-        System.out.println(name);
+    @Autowired
+    public UserService userService;
+
+    @RequestMapping("/query")
+    @ResponseBody
+    public User query(String name) {
+    User user = userService.queryUser(name);
+    return user;
     }
 }
