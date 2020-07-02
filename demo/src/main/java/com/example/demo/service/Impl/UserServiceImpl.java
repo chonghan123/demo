@@ -6,7 +6,7 @@ import com.example.demo.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.mybatis.mapper.UserMapper;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.UserService;
 
 /**
