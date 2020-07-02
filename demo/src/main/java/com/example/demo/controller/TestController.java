@@ -4,7 +4,10 @@ import com.example.demo.pojo.Student;
 import com.example.demo.pojo.User;
 import com.example.demo.service.UserService;
 import com.example.demo.util.RedisUtil;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +28,8 @@ public class TestController {
 
     @Autowired
     public RedisUtil redisUtil;
-
+    @Autowired
+    KafkaTemplate kafkaTemplate;
 
     @RequestMapping("/query")
     @ResponseBody
@@ -55,7 +59,20 @@ public class TestController {
     @RequestMapping("/getStudent")
     @ResponseBody
     public Student getStudent(String userName) {
-      Student student =  userService.getStudent(userName);
-      return student;
+        Student student = userService.getStudent(userName);
+        return student;
+
+    }
+
+    @RequestMapping("/sendMessage")
+    @ResponseBody
+    public String sendMessage(String msg) {
+        kafkaTemplate.send("demo", msg);
+        return "success";
+    }
+
+    @KafkaListener(topics = {"hhh"})
+    public void listen(ConsumerRecord<?, ?> record) {
+        System.out.println(record.value());
     }
 }

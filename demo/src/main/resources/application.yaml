@@ -25,5 +25,15 @@ spring:
       host: 101.201.235.107
       port: 27017
 
-
+  kafka:
+    bootstrap-servers: 101.201.235.107:9092 #指定kafka server的地址，集群配多个，中间，逗号隔开
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: default_consumer_group #群组ID
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
